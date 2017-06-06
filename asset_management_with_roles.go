@@ -24,7 +24,7 @@ import (
 	//"github.com/op/go-logging"
 )
 
-var myLogger = logging.MustGetLogger("asset_mgm")
+//var myLogger = logging.MustGetLogger("asset_mgm")
 
 // AssetManagementChaincode example simple Asset Management Chaincode implementation
 // with access control enforcement at chaincode level.
@@ -55,7 +55,7 @@ type AssetManagementChaincode struct {
 
 // Init initialization
 func (t *AssetManagementChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	myLogger.Info("[AssetManagementChaincode] Init")
+	//myLogger.Info("[AssetManagementChaincode] Init")
 	if len(args) != 0 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 0")
 	}
@@ -129,7 +129,7 @@ func (t *AssetManagementChaincode) assign(stub shim.ChaincodeStubInterface, args
 	}
 
 	// Register assignment
-	myLogger.Debugf("New owner of [%s] is [% x]", asset, owner)
+	//myLogger.Debugf("New owner of [%s] is [% x]", asset, owner)
 
 	ok, err := stub.InsertRow("AssetsOwnership", shim.Row{
 		Columns: []*shim.Column{
@@ -170,7 +170,7 @@ func (t *AssetManagementChaincode) transfer(stub shim.ChaincodeStubInterface, ar
 	}
 
 	prvOwner := row.Columns[1].GetBytes()
-	myLogger.Debugf("Previous owener of [%s] is [% x]", asset, prvOwner)
+	//myLogger.Debugf("Previous owener of [%s] is [% x]", asset, prvOwner)
 	if len(prvOwner) == 0 {
 		return nil, fmt.Errorf("Invalid previous owner. Nil")
 	}
